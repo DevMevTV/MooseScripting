@@ -47,7 +47,7 @@ export default function start(server: HttpServer) {
 
             switch (data.type) {
                 case "save":
-                    writeFile(path.join(__dirname, "..", "projects", `${id}.json`), JSON.stringify(data.file, null, 2), err => {
+                    writeFile(path.join(__dirname, "..", "projects", `${id}.json`), JSON.stringify(data.file), err => {
                         if (err) console.error(err);
                     });
                     break;
