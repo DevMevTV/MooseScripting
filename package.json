@@ -1,5 +1,5 @@
 {
-  "name": "Legitermoose",
+  "name": "legitermoose",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "blockly": "^12.5.1",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "ws": "^8.20.0"
   },

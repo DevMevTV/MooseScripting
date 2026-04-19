@@ -107,39 +107,39 @@ const toolbox = {
                 }
             ]
         },
-        {
-            kind: "category",
-            name: "World",
-            colour: "#4CAF50",
-            contents: [
-                {
-                    kind: "block",
-                    type: "setblock",
-                    inputs: {
-                        X: {
-                            shadow: {
-                                type: "text",
-                            }
-                        },
-                        Y: {
-                            shadow: {
-                                type: "text",
-                            }
-                        },
-                        Z: {
-                            shadow: {
-                                type: "text",
-                            }
-                        },
-                        BLOCK: {
-                            shadow: {
-                                type: "text",
-                            }
-                        }
-                    }
-                }
-            ]
-        },
+        //{
+            //kind: "category",
+            //name: "World",
+            //colour: "#4CAF50",
+            //contents: [
+                //{
+                //    kind: "block",
+                //    type: "setblock",
+                //    inputs: {
+                //        X: {
+                //            shadow: {
+                //                type: "text",
+                //            }
+                //        },
+                //        Y: {
+                //            shadow: {
+                //                type: "text",
+                //            }
+                //        },
+                //        Z: {
+                //            shadow: {
+                //                type: "text",
+                //            }
+                //        },
+                //        BLOCK: {
+                //            shadow: {
+                //                type: "text",
+                //            }
+                //        }
+                //    }
+                //}
+            //]
+        //},
         {
             kind: "category",
             name: "Player",
@@ -163,12 +163,12 @@ const toolbox = {
                 }
             ]
         },
-        {
-            kind: "category",
-            name: "Variables",
-            colour: "#A55B80",
-            custom: "VARIABLE"
-        }
+        //{
+        //    kind: "category",
+        //    name: "Variables",
+        //    colour: "#A55B80",
+        //    custom: "VARIABLE"
+        //}
     ]
 }
 
