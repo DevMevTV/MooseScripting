@@ -46,12 +46,28 @@ const toolbox = {
                     inputs: {
                         A: {
                             shadow: {
-                                type: "text"
+                                type: "math_number"
                             }
                         },
                         B: {
                             shadow: {
-                                type: "text"
+                                type: "math_number"
+                            }
+                        }
+                    }
+                },
+                {
+                    kind: "block",
+                    type: "math_random_int",
+                    inputs: {
+                        A: {
+                            shadow: {
+                                type: "math_number"
+                            }
+                        },
+                        B: {
+                            shadow: {
+                                type: "math_number"
                             }
                         }
                     }

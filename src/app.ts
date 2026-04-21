@@ -69,7 +69,14 @@ export default function app(app: Express) {
 
             try {
                 const project = get_project(id);
-                const bytecode = compile(project);
+                let bytecode
+                try {
+                    bytecode = compile(project);
+                } catch (e) {
+                    // @ts-ignore
+                    res.status(500).send(e.toString());
+                    return;
+                }
                 res.send({
                     bytecode: bytecode,
                     world_id: id

@@ -14,6 +14,7 @@ export enum OPCODES {
     TELL_PLAYER,
 
     SETBLOCK,
+    TELEPORT,
 
     JUMP,
     LOAD_IF_TRUE,
@@ -21,6 +22,11 @@ export enum OPCODES {
     NOT,
     AND,
     OR,
+
+    ADD,
+    SUB,
+    MLT,
+    DIV,
 
     EQUAL,
     NOT_EQUAL,
@@ -30,6 +36,7 @@ export enum OPCODES {
     LESS_EQUAL,
 
     TEXT_JOIN,
+    RANDOM_NUMBER
 }
 
 let extra_blocks: any[][] = []
@@ -47,6 +54,33 @@ const generate = (block: Block | null): any[] => {
         case "text":
             return [
                 [OPCODES.PUSH_STRING, block.getFieldValue("TEXT")],
+            ]
+        case "math_number":
+            return [
+                [OPCODES.PUSH_STRING, block.getFieldValue("NUM").toString()],
+            ]
+        case "math_random_int":
+            return [
+                ...generate(block.getInputTargetBlock("A")),
+                ...generate(block.getInputTargetBlock("B")),
+                [OPCODES.RANDOM_NUMBER]
+            ]
+        case "logic_negate":
+            return [
+                ...generate(block.getInputTargetBlock("BOOL")),
+                [OPCODES.NOT]
+            ]
+        case "logic_operation":
+            const property = block?.getFieldValue("OP");
+            let op;
+            if (property == "AND") op = OPCODES.AND
+            else if (property == "OR") op = OPCODES.OR
+
+
+            return [
+                ...generate(block.getInputTargetBlock("A")),
+                ...generate(block.getInputTargetBlock("B")),
+                [op]
             ]
         case "player_var":
             return [
@@ -98,6 +132,19 @@ const generate = (block: Block | null): any[] => {
                 ...generate(block.getInputTargetBlock("IF0")),
                 [OPCODES.LOAD_IF_TRUE, extra_blocks.length - 1]
             ]
+        case "math_arithmetic": {
+            const property = block?.getFieldValue("PROPERTY");
+            let op;
+            if (property == "+") op = OPCODES.ADD;
+            if (property == "-") op = OPCODES.SUB;
+            if (property == "*") op = OPCODES.MLT;
+            if (property == "/") op = OPCODES.DIV;
+            return [
+                ...generate(block.getInputTargetBlock("A")),
+                ...generate(block.getInputTargetBlock("B")),
+                [op]
+            ]
+        }
         //case "setblock": {
         //    return [
         //        ...generate(block.getInputTargetBlock("X")),
@@ -155,7 +202,7 @@ export default function compile(src: JSON) {
 
     result.extra_blocks = extra_blocks
 
-    console.log(JSON.stringify(result))
+    //console.log(JSON.stringify(result))
 
     return result
 }

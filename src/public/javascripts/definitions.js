@@ -24,7 +24,7 @@ Blockly.Blocks["player_tell"] = {
             .setCheck("Player")
             .appendField("tell player")
         this.appendValueInput("MESSAGE")
-            .setCheck("String")
+            .setCheck(["String", "Number"])
             .appendField("message")
 
         this.setPreviousStatement(true);
@@ -37,29 +37,45 @@ Blockly.Blocks["player_tell"] = {
 Blockly.Blocks["math_arithmetic"] = {
     init: function () {
         this.appendValueInput("A")
-            .setCheck("String");
+            .setCheck("Number");
 
         this.appendDummyInput()
             .appendField(new Blockly.FieldDropdown([
                 ["+", "+"],
-                //["-", "-"],
-                //["*", "*"],
-                //["/", "/"],
-                //["^", "^"]
+                ["-", "-"],
+                ["*", "*"],
+                ["/", "/"]
             ]), "PROPERTY");
 
         this.appendValueInput("B")
-            .setCheck("String");
+            .setCheck("Number");
 
         this.setInputsInline(true);
-        this.setOutput(true, "String");
+        this.setOutput(true, "Number");
         this.setColour("%{BKY_MATH_HUE}");
     }
 };
 
+Blockly.Blocks["math_random_int"] = {
+    init: function() {
+        this.appendValueInput("A")
+            .setCheck("Number")
+            .appendField("random from");
+
+        this.appendValueInput("B")
+            .setCheck("Number")
+            .appendField("to");
+
+        this.setInputsInline(true);
+        this.setOutput(true, "Number");
+        this.setColour("%{BKY_MATH_HUE}");
+    }
+}
+
 Blockly.Blocks["logic_compare"] = {
     init: function () {
-        this.appendValueInput("A");
+        this.appendValueInput("A")
+            .setCheck(["String", "Number", "Boolean"]);
 
         this.appendDummyInput()
             .appendField(new Blockly.FieldDropdown([
@@ -71,7 +87,8 @@ Blockly.Blocks["logic_compare"] = {
                 //["\u2264", "LTE"]
             ]), "OP");
 
-        this.appendValueInput("B");
+        this.appendValueInput("B")
+            .setCheck(["String", "Number", "Boolean"]);
 
         this.setInputsInline(true);
         this.setOutput(true, "Boolean");
@@ -154,13 +171,13 @@ Blockly.Blocks["text"] = {
 Blockly.Blocks["text_join"] = {
     init: function () {
         this.appendValueInput("ADD0")
-            .setCheck("String");
+            .setCheck(["String", "Number"]);
 
         this.appendDummyInput()
             .appendField("join")
 
         this.appendValueInput("ADD1")
-            .setCheck("String")
+            .setCheck(["String", "Number"])
 
         this.setInputsInline(true);
         this.setOutput(true, "String");
