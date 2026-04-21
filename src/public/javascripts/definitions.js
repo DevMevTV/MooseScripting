@@ -5,16 +5,27 @@ Blockly.Blocks["player_data"] = {
         this.appendDummyInput()
             .appendField(new Blockly.FieldDropdown([
                 ["Name", "NAME"],
-                ["UUID", "UUID"]
-            ]), "PROPERTY")
+                ["Id", "ID"]
+            ], value => {
+                this.updateOutput(value);
+                return value;
+            }), "PROPERTY")
             .appendField("of player");
 
         this.appendValueInput("PLAYER")
             .setCheck("Player")
 
-        this.setOutput(true, "String");
         this.setColour("#3366CC");
         this.setInputsInline(true);
+
+        this.updateOutput("NAME")
+    },
+
+    updateOutput: function (value) {
+        if (value === "NAME")
+            this.setOutput(true, "String");
+        else if (value === "ID")
+            this.setOutput(true, "Number");
     }
 }
 
@@ -185,31 +196,31 @@ Blockly.Blocks["text_join"] = {
     }
 };
 
-//Blockly.Blocks["setblock"] = {
-//    init: function() {
-//
-//        this.appendDummyInput()
-//            .appendField("set block at")
-//
-//        this.appendValueInput("X")
-//            .setCheck("String");
-//
-//        this.appendValueInput("Y")
-//            .setCheck("String");
-//
-//        this.appendValueInput("Z")
-//            .setCheck("String");
-//
-//        this.appendDummyInput()
-//            .appendField("to")
-//
-//        this.appendValueInput("BLOCK")
-//            .setCheck("String");
-//
-//        this.setPreviousStatement(true);
-//        this.setNextStatement(true);
-//        this.setColour("#4CAF50");
-//
-//        this.setInputsInline(true);
-//    }
-//}
+Blockly.Blocks["setblock"] = {
+    init: function() {
+
+        this.appendDummyInput()
+            .appendField("set block at")
+
+        this.appendValueInput("X")
+            .setCheck("String");
+
+        this.appendValueInput("Y")
+            .setCheck("String");
+
+        this.appendValueInput("Z")
+            .setCheck("String");
+
+        this.appendDummyInput()
+            .appendField("to")
+
+        this.appendValueInput("BLOCK")
+            .setCheck("String");
+
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour("#4CAF50");
+
+        this.setInputsInline(true);
+    }
+}

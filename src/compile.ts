@@ -8,7 +8,7 @@ export enum OPCODES {
     PUSH_PLAYER,
 
     GET_PLAYER_NAME,
-    GET_PLAYER_UUID,
+    GET_PLAYER_ID,
 
     PRINT,
     TELL_PLAYER,
@@ -97,7 +97,7 @@ const generate = (block: Block | null): any[] => {
             let opcode;
 
             if (property === "NAME") opcode = OPCODES.GET_PLAYER_NAME;
-            else if (property === "UUID") opcode = OPCODES.GET_PLAYER_UUID;
+            else if (property === "ID") opcode = OPCODES.GET_PLAYER_ID;
 
             return [
                 ...generate(block.getInputTargetBlock("PLAYER")),
@@ -145,15 +145,15 @@ const generate = (block: Block | null): any[] => {
                 [op]
             ]
         }
-        //case "setblock": {
-        //    return [
-        //        ...generate(block.getInputTargetBlock("X")),
-        //        ...generate(block.getInputTargetBlock("Y")),
-        //        ...generate(block.getInputTargetBlock("Z")),
-        //        ...generate(block.getInputTargetBlock("BLOCK")),
-        //        [OPCODES.SETBLOCK]
-        //    ]
-        //}
+        case "setblock": {
+            return [
+                ...generate(block.getInputTargetBlock("X")),
+                ...generate(block.getInputTargetBlock("Y")),
+                ...generate(block.getInputTargetBlock("Z")),
+                ...generate(block.getInputTargetBlock("BLOCK")),
+                [OPCODES.SETBLOCK]
+            ]
+        }
         default:
             console.log(block.type)
             return [];
