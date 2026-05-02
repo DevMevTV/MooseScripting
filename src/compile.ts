@@ -154,6 +154,15 @@ const generate = (block: Block | null): any[] => {
                 [OPCODES.SETBLOCK]
             ]
         }
+        case "player_teleport": {
+            return [
+                ...generate(block.getInputTargetBlock("PLAYER")),
+                ...generate(block.getInputTargetBlock("X")),
+                ...generate(block.getInputTargetBlock("Y")),
+                ...generate(block.getInputTargetBlock("Z")),
+                [OPCODES.TELEPORT]
+            ]
+        }
         default:
             console.log(block.type)
             return [];
@@ -172,11 +181,12 @@ const generateChain = (block: Block | null): any[] => {
 }
 
 export default function compile(src: JSON) {
-    const result: Record<'player_events_join' | 'player_events_death' | 'player_events_leave' | 'world_events_load' | 'world_events_stop' | 'extra_blocks', any[][]> = {
+    const result: Record<'player_events_join' | 'player_events_death' | 'player_events_leave' | 'world_events_load' | 'world_events_tick' | 'world_events_stop' | 'extra_blocks', any[][]> = {
         player_events_join: [],
         player_events_death: [],
         player_events_leave: [],
         world_events_load: [],
+        world_events_tick: [],
         world_events_stop: [],
         extra_blocks: [],
     };

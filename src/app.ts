@@ -73,6 +73,7 @@ export default function app(app: Express) {
                 try {
                     bytecode = compile(project);
                 } catch (e) {
+                    console.log(e)
                     // @ts-ignore
                     res.status(500).send(e.toString());
                     return;

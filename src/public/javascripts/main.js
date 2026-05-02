@@ -176,6 +176,27 @@ const toolbox = {
                             }
                         }
                     }
+                },
+                {
+                    kind: "block",
+                    type: "player_teleport",
+                    inputs: {
+                        X: {
+                            shadow: {
+                                type: "text"
+                            }
+                        },
+                        Y: {
+                            shadow: {
+                                type: "text"
+                            }
+                        },
+                        Z: {
+                            shadow: {
+                                type: "text"
+                            }
+                        }
+                    }
                 }
             ]
         },

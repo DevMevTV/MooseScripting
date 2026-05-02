@@ -113,6 +113,7 @@ Blockly.Blocks["world_events"] = {
             .appendField("on world")
             .appendField(new Blockly.FieldDropdown([
                 ["Load", "LOAD"],
+                ["Tick", "TICK"]
                 //["Stop", "STOP"]
             ]), "ACTION")
 
@@ -220,6 +221,35 @@ Blockly.Blocks["setblock"] = {
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setColour("#4CAF50");
+
+        this.setInputsInline(true);
+    }
+}
+
+Blockly.Blocks["player_teleport"] = {
+    init: function() {
+
+        this.appendDummyInput()
+            .appendField("teleport player")
+
+        this.appendValueInput("PLAYER")
+            .setCheck("Player");
+
+        this.appendDummyInput()
+            .appendField("to")
+
+        this.appendValueInput("X")
+            .setCheck("String");
+
+        this.appendValueInput("Y")
+            .setCheck("String");
+
+        this.appendValueInput("Z")
+            .setCheck("String");
+
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour("#3366CC");
 
         this.setInputsInline(true);
     }
